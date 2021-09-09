@@ -29,11 +29,19 @@ func ParseOpts() (*CmdOpts, error) {
 func flagHelpMessage() {
 	cmd := os.Args[0]
 	fmt.Fprintln(os.Stderr, "")
+	fmt.Fprintln(os.Stderr, "CTF TIME CLI Tool")
+
+	fmt.Fprintln(os.Stderr, "")
+	fmt.Fprintln(os.Stderr, "AUTHOR:  yu1hpa")
+
+	fmt.Fprintln(os.Stderr, "")
 	fmt.Fprintln(os.Stderr, "Usage:")
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("  %s [OPTIONS]", cmd))
+
 	fmt.Fprintln(os.Stderr, "")
 	fmt.Fprintln(os.Stderr, "Examples:")
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("  %s -limit 5 -time 1422019499", cmd))
+
 	fmt.Fprintln(os.Stderr, "")
 	fmt.Fprintln(os.Stderr, "Options:")
 	flag.PrintDefaults()
