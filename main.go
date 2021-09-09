@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/olekukonko/tablewriter"
+	"os"
 	"time"
 )
 
@@ -62,8 +64,22 @@ func main() {
 			fmt.Println("JSON Unmarshal error:", err)
 			return
 		}
+
+		header := []string{"CTF NAME", "DURATION", "TIME FRAME", "FORMAT"}
+		table := tablewriter.NewWriter(os.Stdout)
+		table.SetHeader(header)
+		table.SetRowLine(true)
+		table.SetRowSeparator("-")
+		table.SetAutoFormatHeaders(false)
+
 		for _, event := range events {
-			fmt.Println(event.Title)
+			ctf := make([]string, len(header))
+			ctf[0] = event.Title
+			ctf[1] = string(event.Duration.Days) + "days, " + string(event.Duration.Hours) + "hours"
+			ctf[2] = event.Start[:16] + "\n -> " + event.Finish[:16] + "(UTC)"
+			ctf[3] = event.Format
+			table.Append(ctf)
 		}
+		table.Render()
 	}
 }
