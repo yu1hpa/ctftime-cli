@@ -37,8 +37,14 @@ type EventInfo []struct {
 	Weight        json.Number `json:"weight"`
 }
 
+const MAX_LIMIT = 7
+
 func fetchEvents(opts *CmdOpts) {
-	url := fmt.Sprintf("https://ctftime.org/api/v1/events/?limit=3&start=%d", opts.UnixTime)
+	if MAX_LIMIT < opts.Limit {
+		fmt.Fprintf(os.Stderr, "[Error]: Must be %d or less\n", MAX_LIMIT)
+		os.Exit(1)
+	}
+	url := fmt.Sprintf("https://ctftime.org/api/v1/events/?limit=%d&start=%d", opts.Limit, opts.UnixTime)
 
 	fmt.Println(url)
 	body := fetch(url)

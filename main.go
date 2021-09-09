@@ -8,6 +8,7 @@ import (
 type CmdOpts struct {
 	Type     string
 	UnixTime int64
+	Limit    int64
 	Args     []string
 }
 
@@ -17,11 +18,12 @@ func main() {
 	opts := CmdOpts{}
 	//flag.Usage = flagHelpMessage
 	flag.StringVar(&opts.Type, "type", "events", "[TODO: add explain]")
+	flag.Int64Var(&opts.Limit, "limit", 3, "[TODO: add explain]")
 	flag.Int64Var(&opts.UnixTime, "time", unixTime, "[TODO: add explain]")
 	flag.Parse()
 
 	switch opts.Type {
-        case "events" :
-		    fetchEvents(&opts)
+	case "events":
+		fetchEvents(&opts)
 	}
 }
