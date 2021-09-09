@@ -46,7 +46,6 @@ func fetchEvents(opts *CmdOpts) {
 	}
 	url := fmt.Sprintf("https://ctftime.org/api/v1/events/?limit=%d&start=%d", opts.Limit, opts.UnixTime)
 
-	fmt.Println(url)
 	body := fetch(url)
 	var events EventInfo
 	if err := json.Unmarshal([]byte(body), &events); err != nil {
