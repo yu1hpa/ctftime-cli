@@ -20,7 +20,8 @@ func main() {
 	flag.Int64Var(&opts.UnixTime, "time", unixTime, "[TODO: add explain]")
 	flag.Parse()
 
-	if opts.Type == "events" {
-		fetchEvents(&opts)
+	switch opts.Type {
+        case "events" :
+		    fetchEvents(&opts)
 	}
 }
